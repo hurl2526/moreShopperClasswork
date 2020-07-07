@@ -64,13 +64,13 @@ router.post(
     req.flash('errors', errors.errors[0].msg)
     return res.redirect('/api/users/login')
   }else {
-    passport.authenticate('local-login', {
-      successRedirect: '/',
-      failureRedirect: '/api/users/login',
-      failureFlash: true,
-    })
+    next()
   }
-  }
+  },passport.authenticate('local-login', {
+    successRedirect: '/',
+    failureRedirect: '/api/users/login',
+    failureFlash: true,
+  })
 );
 
 
